@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-HetioNet Database Client
-Supports Neo4j (Graph) and MongoDB (Document) databases
-"""
-
 import argparse
 import csv
 import time
@@ -21,7 +15,7 @@ class HetioNetDB:
             auth=(neo4j_user, neo4j_password)
         )
         
-        # MongoDB connection
+        #MongoDB connection
         self.mongo_client = MongoClient(mongo_uri)
         self.mongo_db = self.mongo_client[mongo_db]
         self.diseases_collection = self.mongo_db['diseases']
@@ -358,7 +352,7 @@ def find_treatments(args):
             print(f"\n{i}. {treatment['compound_name']} ({treatment['compound_id']})")
             if args.verbose:
                 print("   Mechanisms:")
-                for mech in treatment['mechanisms'][:3]:  #Show first 3
+                for mech in treatment['mechanisms'][:3]:  
                     print(f"   - Gene: {mech['gene']}")
                     print(f"     Compound: {mech['compound_effect']}")
                     print(f"     Location ({mech['anatomy']}): {mech['anatomy_effect']}")
